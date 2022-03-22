@@ -6,4 +6,4 @@
 | Ricky Tham | [ricky-tham](https://github.com/ricky-tham) |
 | David Mongeon | [davidmon-exe](https://github.com/davidmon-exe) |
 | Nicholas Coles | [Username](https://github.com/) |
-| Abdulwasay Mansoor | [Username](https://github.com/) |
+| Abdulwasay Mansoor | [wasayMansoor](https://github.com/wasayMansoor) |
