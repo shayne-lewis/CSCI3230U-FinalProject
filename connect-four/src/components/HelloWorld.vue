@@ -1,76 +1,298 @@
 
-<template>
-    <body>
-        <div class="game-board">
-            <div class="cell row-top col-0"></div>
-            <div class="cell row-top col-1"></div>
-            <div class="cell row-top col-2"></div>
-            <div class="cell row-top col-3"></div>
-            <div class="cell row-top col-4"></div>
-            <div class="cell row-top col-5"></div>
-            <div class="cell row-top col-6"></div>
-            <div class="cell row-0 col-0 left-border top-border"></div>
-            <div class="cell row-0 col-1 top-border"></div>
-            <div class="cell row-0 col-2 top-border"></div>
-            <div class="cell row-0 col-3 top-border"></div>
-            <div class="cell row-0 col-4 top-border"></div>
-            <div class="cell row-0 col-5 top-border"></div>
-            <div class="cell row-0 col-6 top-border right-border"></div>
-            <div class="cell row-1 col-0 left-border"></div>
-            <div class="cell row-1 col-1"></div>
-            <div class="cell row-1 col-2"></div>
-            <div class="cell row-1 col-3"></div>
-            <div class="cell row-1 col-4"></div>
-            <div class="cell row-1 col-5"></div>
-            <div class="cell row-1 col-6 right-border"></div>
-            <div class="cell row-2 col-0 left-border"></div>
-            <div class="cell row-2 col-1"></div>
-            <div class="cell row-2 col-2"></div>
-            <div class="cell row-2 col-3"></div>
-            <div class="cell row-2 col-4"></div>
-            <div class="cell row-2 col-5"></div>
-            <div class="cell row-2 col-6 right-border"></div>
-            <div class="cell row-3 col-0 left-border"></div>
-            <div class="cell row-3 col-1"></div>
-            <div class="cell row-3 col-2"></div>
-            <div class="cell row-3 col-3"></div>
-            <div class="cell row-3 col-4"></div>
-            <div class="cell row-3 col-5"></div>
-            <div class="cell row-3 col-6 right-border"></div>
-            <div class="cell row-4 col-0 left-border"></div>
-            <div class="cell row-4 col-1"></div>
-            <div class="cell row-4 col-2"></div>
-            <div class="cell row-4 col-3"></div>
-            <div class="cell row-4 col-4"></div>
-            <div class="cell row-4 col-5"></div>
-            <div class="cell row-4 col-6 right-border"></div>
-            <div class="cell row-5 col-0 bottom-border left-border"></div>
-            <div class="cell row-5 col-1 bottom-border"></div>
-            <div class="cell row-5 col-2 bottom-border"></div>
-            <div class="cell row-5 col-3 bottom-border"></div>
-            <div class="cell row-5 col-4 bottom-border"></div>
-            <div class="cell row-5 col-5 bottom-border"></div>
-            <div class="cell row-5 col-6 bottom-border right-border"></div>
-        </div>
-
-        <div class="footer">
-            <button class="reset">Submit</button>
-            <span class="status"></span>
-        </div>
-    </body>
-</template>
-
-<script>
-    export default {
-        name: 'HelloWorld',
-            mounted() {
-                let Script = document.createElement("script");
-                Script.setAttribute("src", "../assets/scripts/game.js");
-                document.head.appendChild(Script);
-            }
-    }
-</script>
+<template src="../assets/HTML/game.html" />
 
 <style scoped lang="scss">
     @import '../assets/Styles/game.scss';
 </style>
+
+<script>
+export default {
+    name: 'HelloWorld',
+}
+
+
+
+// DOM Elements
+const resetButton = document.querySelector('.reset');
+const statusSpan = document.querySelector('.status');
+console.log("hello")
+
+// columns
+const column0 = Array.from(document.querySelectorAll('.col-0')).reverse();
+const column1 = Array.from(document.querySelectorAll('.col-1')).reverse();
+const column2 = Array.from(document.querySelectorAll('.col-2')).reverse();
+const column3 = Array.from(document.querySelectorAll('.col-3')).reverse();
+const column4 = Array.from(document.querySelectorAll('.col-4')).reverse();
+const column5 = Array.from(document.querySelectorAll('.col-5')).reverse();
+const column6 = Array.from(document.querySelectorAll('.col-6')).reverse();
+const columns = [column0, column1, column2, column3, column4, column5, column6];
+
+
+// rows
+
+const topRow = Array.from(document.querySelectorAll('.row-top'));
+const row0 = Array.from(document.querySelectorAll('.row-0'));
+const row1 = Array.from(document.querySelectorAll('.row-1'));
+const row2 = Array.from(document.querySelectorAll('.row-2'));
+const row3 = Array.from(document.querySelectorAll('.row-3'));
+const row4 = Array.from(document.querySelectorAll('.row-4'));
+const row5 = Array.from(document.querySelectorAll('.row-5'));
+const rows = [row0, row1, row2, row3, row4, row5];
+
+// variables
+let gameIsLive = true;
+let yellowIsNext = true;
+
+
+// Functions
+const getClassListArray = (cell) => {
+    const classList = cell.classList;
+    return [...classList];
+};
+
+const getCellLocation = (cell) => {
+    const classList = getClassListArray(cell);
+
+    const rowClass = classList.find(className => className.includes('row'));
+    const colClass = classList.find(className => className.includes('col'));
+    const rowIndex = rowClass[4];
+    const colIndex = colClass[4];
+    const rowNumber = parseInt(rowIndex, 10);
+    const colNumber = parseInt(colIndex, 10);
+
+    return [rowNumber, colNumber];
+};
+
+const getFirstOpenCellForColumn = (colIndex) => {
+    const column = columns[colIndex];
+    const columnWithoutTop = column.slice(0, 6);
+
+    for (const cell of columnWithoutTop) {
+        const classList = getClassListArray(cell);
+        if (!classList.includes('yellow') && !classList.includes('red')) {
+            return cell;
+        }
+    }
+
+    return null;
+};
+
+const clearColorFromTop = (colIndex) => {
+    const topCell = topRow[colIndex];
+    topCell.classList.remove('yellow');
+    topCell.classList.remove('red');
+};
+
+const getColorOfCell = (cell) => {
+    const classList = getClassListArray(cell);
+    if (classList.includes('yellow')) return 'yellow';
+    if (classList.includes('red')) return 'red';
+    return null;
+};
+
+const checkWinningCells = (cells) => {
+    if (cells.length < 4) return false;
+
+    gameIsLive = false;
+    for (const cell of cells) {
+        cell.classList.add('won');
+    }
+    statusSpan.textContent = `${yellowIsNext ? 'Yellow' : 'Red'} has won!`
+    return true;
+};
+
+const checkStatusOfGame = (cell) => {
+    const color = getColorOfCell(cell);
+    if (!color) return;
+    const [rowIndex, colIndex] = getCellLocation(cell);
+
+    // Check horizontally
+    let winningCells = [cell];
+    let currRow = rowIndex;
+    let currCol = colIndex - 1;
+    while (currCol >= 0) {
+        const cellToCheck = rows[currRow][currCol];
+        if (getColorOfCell(cellToCheck) === color) {
+            winningCells.push(cellToCheck);
+            currCol--;
+        } else {
+            break;
+        }
+    }
+    currCol = colIndex + 1;
+    while (currCol <= 6) {
+        const cellToCheck = rows[currRow][currCol];
+        if (getColorOfCell(cellToCheck) === color) {
+            winningCells.push(cellToCheck);
+            currCol++;
+        } else {
+            break;
+        }
+    }
+    let isWinningCombo = checkWinningCells(winningCells);
+    if (isWinningCombo) return;
+
+
+    // Check vertically
+    winningCells = [cell];
+    currRow = rowIndex - 1;
+    currCol = colIndex;
+    while (currRow >= 0) {
+        const cellToCheck = rows[currRow][currCol];
+        if (getColorOfCell(cellToCheck) === color) {
+            winningCells.push(cellToCheck);
+            currRow--;
+        } else {
+            break;
+        }
+    }
+    currRow = rowIndex + 1;
+    while (currRow <= 5) {
+        const cellToCheck = rows[currRow][currCol];
+        if (getColorOfCell(cellToCheck) === color) {
+            winningCells.push(cellToCheck);
+            currRow++;
+        } else {
+            break;
+        }
+    }
+    isWinningCombo = checkWinningCells(winningCells);
+    if (isWinningCombo) return;
+
+
+    // Check diagonally /
+    winningCells = [cell];
+    currRow = rowIndex + 1;
+    currCol = colIndex - 1;
+    while (currCol >= 0 && currRow <= 5) {
+        const cellToCheck = rows[currRow][currCol];
+        if (getColorOfCell(cellToCheck) === color) {
+            winningCells.push(cellToCheck);
+            currRow++;
+            currCol--;
+        } else {
+            break;
+        }
+    }
+    currRow = rowIndex - 1;
+    currCol = colIndex + 1;
+    while (currCol <= 6 && currRow >= 0) {
+        const cellToCheck = rows[currRow][currCol];
+        if (getColorOfCell(cellToCheck) === color) {
+            winningCells.push(cellToCheck);
+            currRow--;
+            currCol++;
+        } else {
+            break;
+        }
+    }
+    isWinningCombo = checkWinningCells(winningCells);
+    if (isWinningCombo) return;
+
+
+    // Check diagonally \
+    winningCells = [cell];
+    currRow = rowIndex - 1;
+    currCol = colIndex - 1;
+    while (currCol >= 0 && currRow >= 0) {
+        const cellToCheck = rows[currRow][currCol];
+        if (getColorOfCell(cellToCheck) === color) {
+            winningCells.push(cellToCheck);
+            currRow--;
+            currCol--;
+        } else {
+            break;
+        }
+    }
+    currRow = rowIndex + 1;
+    currCol = colIndex + 1;
+    while (currCol <= 6 && currRow <= 5) {
+        const cellToCheck = rows[currRow][currCol];
+        if (getColorOfCell(cellToCheck) === color) {
+            winningCells.push(cellToCheck);
+            currRow++;
+            currCol++;
+        } else {
+            break;
+        }
+    }
+    isWinningCombo = checkWinningCells(winningCells);
+    if (isWinningCombo) return;
+
+    // Check to see if we have a tie
+    const rowsWithoutTop = rows.slice(0, 6);
+    for (const row of rowsWithoutTop) {
+        for (const cell of row) {
+            const classList = getClassListArray(cell);
+            if (!classList.includes('yellow') && !classList.includes('red')) {
+                return;
+            }
+        }
+    }
+
+    gameIsLive = false;
+    statusSpan.textContent = "Game is a tie!";
+};
+
+// Event Handlers
+const handleCellMouseOver = (e) => {
+    if (!gameIsLive) return;
+    const cell = e.target;
+    const [rowIndex, colIndex] = getCellLocation(cell);
+    const topCell = topRow[colIndex];
+    topCell.classList.add(yellowIsNext ? 'yellow' : 'red');
+};
+
+const handleCellMouseOut = (e) => {
+    const cell = e.target;
+    const [rowIndex, colIndex] = getCellLocation(cell);
+    clearColorFromTop(colIndex);
+};
+
+const handleCellClick = (e) => {
+    if (!gameIsLive) return;
+    const cell = e.target;
+    const [rowIndex, colIndex] = getCellLocation(cell);
+
+    const openCell = getFirstOpenCellForColumn(colIndex);
+
+    if (!openCell) return;
+
+    openCell.classList.add(yellowIsNext ? 'yellow' : 'red');
+    checkStatusOfGame(openCell);
+
+    yellowIsNext = !yellowIsNext;
+    clearColorFromTop(colIndex);
+    if (gameIsLive) {
+        const topCell = topRow[colIndex];
+        topCell.classList.add(yellowIsNext ? 'yellow' : 'red');
+    }
+};
+
+
+
+
+// Adding Event Listeners
+for (const row of rows) {
+    for (const cell of row) {
+        cell.addEventListener('mouseover', handleCellMouseOver);
+        cell.addEventListener('mouseout', handleCellMouseOut);
+        cell.addEventListener('click', handleCellClick);
+    }
+}
+
+resetButton.addEventListener('click', () => {
+    for (const row of rows) {
+        for (const cell of row) {
+            cell.classList.remove('red');
+            cell.classList.remove('yellow');
+            cell.classList.remove('won');
+        }
+    }
+    gameIsLive = true;
+    yellowIsNext = true;
+    statusSpan.textContent = '';
+});
+
+</script>
+
