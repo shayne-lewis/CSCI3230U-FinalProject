@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import HighScoreView from '../views/HighScoreView.vue'
 
 const routes = [
   {
@@ -11,7 +12,7 @@ const routes = [
     path: '/highscores',
     name: 'highscores',
     component: HighScoreView
-    
+
   }
 ]
 

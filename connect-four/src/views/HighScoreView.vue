@@ -1,5 +1,16 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+    <div>
+        <HighScores />
+    </div>
 </template>
+
+<script>
+import HighScores from '@/components/HighScores.vue'
+
+export default {
+    name: 'HighScoreView',
+    components: {
+        HighScores
+    }
+}
+</script>

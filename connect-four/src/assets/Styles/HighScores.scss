@@ -1,0 +1,27 @@
+#HighScoresDiv{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#HighScoresTable{
+    
+    table-layout: fixed;
+
+    width: 600px;
+    height: 25px;
+    text-align: center;
+
+    th{
+        font-size: 25px;
+        border: 2px solid black;
+    }
+    td{
+        font-size: 20px;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+    }
+    
+    border-bottom: 2px solid black;
+    border-collapse: collapse;
+}
