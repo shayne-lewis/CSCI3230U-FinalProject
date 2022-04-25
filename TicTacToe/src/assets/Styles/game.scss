@@ -1,0 +1,51 @@
+#gamePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    transform: translateY(50%);
+}
+
+#board{
+    font-size: 30px;
+    flex: 0 1 auto;
+    position: absolute;
+    align-self: center;
+}
+
+#history{
+    padding-left: 25px;
+    flex: 0 1 auto;
+    margin-right: auto;
+    transform: translateY(-50px);
+}
+
+#resetButton{
+    flex: 0 1 auto;
+    position: absolute;
+    left: 65%;
+    transform: translateY(-120px);
+}
+
+#playerWinner{
+    flex: 0 1 auto;
+    position: absolute;
+    left: 43%;
+    transform: translateY(200px);
+}   
+
+.square {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 70px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 100px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 100px;
+}
