@@ -1,11 +1,6 @@
 <template>
     <div class="container" id='gamePage'>
 
-        <div id="playerWinner">
-            <h2 v-if="winner"> Winner: {{ winner }} </h2>
-            <h2 v-else> Players Move {{ player }} </h2>
-        </div>
-
         <div id='resetButton'>
             <button @click="reset" class="btn btn-success mb-3">
                 RESET
@@ -21,12 +16,16 @@
         </div>
 
         <div id='history'>
-            <h2 class="mt-5"> HISTORY </h2>
+            <h2> HISTORY </h2>
             <div v-for="(game, idx) in history" :key="idx">
                 Game {{ idx + 1 }}: {{ game }} won
             </div>
         </div>
+    </div>
 
+    <div id="playerWinner">
+        <h2 v-if="winner"> Winner: {{ winner }} </h2>
+        <h2 v-else> Players Move {{ player }} </h2>
     </div>
 </template>
 
@@ -47,8 +46,11 @@
 
             const move = (x,y) => {
                 if (winner.value) return
-                squares.value[x][y] = player.value
-                player.value = player.value === 'O' ? 'X' : 'O'
+                if (squares.value[x][y] == ''){
+                    squares.value[x][y] = player.value
+                    player.value = player.value === 'O' ? 'X' : 'O'
+                }
+                
             }
 
             const reset = () => {
@@ -66,7 +68,14 @@
                     history.value.push(current)
                     localStorage.setItem('history', JSON.stringify(history.value))
                 }
+
+                if (history.value.length > 10){
+                    history.value.shift()
+                    localStorage.setItem('history', JSON.stringify(history.value))
+                }
             })
+
+
 
             onMounted(() => {
                 history.value = JSON.parse(localStorage.getItem('history')) ?? []
@@ -99,4 +108,5 @@
 
 <style scoped lang="scss">
     @import '../assets/Styles/game.scss';
+    @import '../assets/Mobile/game.scss';
 </style>

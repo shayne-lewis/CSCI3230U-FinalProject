@@ -1,0 +1,48 @@
+@media (max-width: 990px) {
+    #playerWinner{
+        padding-top: 15px;
+        display: flex;
+        justify-content: center; 
+    } 
+
+    #gamePage{
+        display: flex;
+        flex-direction: column;
+
+        // position: relative;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        height: auto;
+        padding-top: 15px;
+    }
+
+    #board{
+        order: 0;
+    }
+
+    #resetButton{
+        padding-top: 10px;
+        order: 1;
+    }
+
+    #history{
+        order: 2;
+    }
+
+
+    .square {
+        background: #fff;
+        border: 1px solid #999;
+        float: left;
+        font-size: 70px;
+        font-weight: bold;
+        line-height: 34px;
+        height: 100px;
+        margin-right: -1px;
+        margin-top: -1px;
+        padding: 0;
+        text-align: center;
+        width: 100px;
+    }
+}
