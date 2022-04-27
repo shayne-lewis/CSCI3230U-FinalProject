@@ -1,11 +1,12 @@
 <template>
     <div>
-        <h2>Headquarters Location</h2>
+        <h2 id="title" style= "padding-top: 20px; text-align: center">Headquarters Location</h2>
+
         <GMapMap
             :center="center"
             :zoom="15"
             map-type-id="terrain"
-            style="width: 500px; height: 300px; margin-left: auto; margin-right: auto;"
+            style= "width: 500px; height: 300px; margin-left: auto; margin-right: auto;"
         >
             <GMapMarker
                 :key="marker.id"
@@ -36,3 +37,4 @@
         }
     }
 </script>
+

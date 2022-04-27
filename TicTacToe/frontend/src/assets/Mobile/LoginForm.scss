@@ -1,0 +1,35 @@
+@media (max-width: 990px) {
+    .username{
+        margin-top: 2rem;
+        text-align: left;
+        margin-left: 20px;
+    }
+    .username input{
+        width: 10rem;
+        margin-left: 20px;
+        display:inline-block;
+    }
+    .password{
+        padding-top: 3rem;
+        text-align: left;
+        margin-left: 20px;
+    }
+    .password input{
+        width: 10rem;
+        margin-left: 20px;
+        display:inline-block;
+    }
+    .error{
+        text-align: left;
+        margin-left: 360px;
+        margin-top: 1.5rem;
+    }
+    .btnDiv{
+        text-align: left;
+        margin-left: 20px;
+    }
+    .btn{
+        width: 100px;
+        margin-top: 4rem;
+    }
+}

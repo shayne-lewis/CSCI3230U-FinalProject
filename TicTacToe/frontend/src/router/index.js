@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import HighScoreView from '../views/HighScoreView.vue'
-import LoginView from '../views/LoginView.vue'
+// import LoginView from '../views/LoginView.vue'
 
 const routes = [
   {
@@ -15,11 +15,11 @@ const routes = [
     component: HighScoreView
 
   },
-  {
-    path: '/login',
-    name: 'login',
-    component: LoginView
-  }
+//   {
+//     path: '/login',
+//     name: 'login',
+//     component: LoginView
+//   }
 ]
 
 const router = createRouter({

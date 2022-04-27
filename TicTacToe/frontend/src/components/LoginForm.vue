@@ -1,81 +1,51 @@
-<template>
-    <form @submit.prevent="login">
-        <div class="username">
-            <label for="username"> Username: </label>
-            <input class="textEntry" type="text" v-model="username" name="username" placeholder="Username"/>
-        </div>
-        <div class="password">
-            <label for="password"> Password: </label>
-            <input class="texEntry" type="password" v-model="password" name="password" placeholder="Password"/>
-        </div>
-        <div class="error" v-if="errorMessage"> {{errorMessage}} </div>
-        <div class="btnDiv"><button class="btn"> Login </button></div>
-    </form>
-</template>
+// <template>
+//     <form @submit.prevent="login">
+//         <div class="name">
+//             <label for="name"> name: </label>
+//             <input class="textEntry" type="text" v-model="name" name="name" placeholder="Name"/>
+//         </div>
+//         <div class="password">
+//             <label for="password"> Password: </label>
+//             <input class="texEntry" type="password" v-model="password" name="password" placeholder="Password"/>
+//         </div>
+//         <div class="error" v-if="errorMessage"> {{errorMessage}} </div>
+//         <div class="btnDiv"><button class="btn"> Login </button></div>
+//     </form>
+// </template>
+ 
+// <script>
+//     import login from '../auth.js';
+//     export default {
+//         data() {
+//             return {
+//                 name: "",
+//                 password: ''
+//             }
+//         },
+//         methods:{
+//             async submit() {
+//                 this.loading = true;
+//                 const response = await login(this.item);
+//                 if (response.data.accessToken) {
+                    
+//                     localStorage.setItem("user", JSON.stringify(response.data));
+//                     this.item = {
+//                     name: "",
+//                     password: ""
+//                     };
+//                     this.loading = false;
+//                     this.$router.push("/");
+//                 } else {
+//                     // error
+//                     console.log("Error", response);
+//                 }
+//             }
+//         }
+//     };
 
-<script>
-    import auth from '../auth/auth';
-    export default {
-        name: "LoginForm",
-        data(){
-            return{
-                username: "Bret",
-                password: "hildegard.org",
-                errorMessage: ""
-            }
-        },
-        methods:{
-            login(){
-                console.log('Call login()');
-                auth.login(this.username, this.password, (res) => {
-                    if (res.auth){
-                        //Login succesful, go to home page.
-                        console.log('Loggin success');
-                        this.$router.replace('/');
-                    } else{
-                        //Login failed.
-                        console.log('Loggin failed');
-                        this.errorMessage = "Loggin failed";
-                    }
-                })
-            }
-        }
-    }
-</script>
+// </script>
 
-<style scoped lang="scss">
-.username{
-    margin-top: 2rem;
-    text-align: left;
-    margin-left: 5rem;
-}
-.username input{
-    width: 20rem;
-    margin-left: 5rem;
-    display:inline-block;
-}
-.password{
-    padding-top: 3rem;
-    text-align: left;
-    margin-left: 5rem;
-}
-.password input{
-    width: 20rem;
-    margin-left: 85px;
-    display:inline-block;
-}
-.error{
-    text-align: left;
-    margin-left: 360px;
-    margin-top: 1.5rem;
-}
-.btnDiv{
-    text-align: left;
-    margin-left: 85px;
-}
-.btn{
-    width: 330px;
-    margin-top: 4rem;
-    margin-left: 10rem;
-}
-</style>
+// <style scoped lang="scss">
+//     @import '../assets/Styles/LoginForm.scss';
+//     @import '../assets/Mobile/LoginForm.scss';
+// </style>
