@@ -1,24 +1,16 @@
-# connect-four
+# Tic Tac Toe
 
 ## Project setup
 ```
 npm install
 ```
+Running frontend and backend is done in two seperate shell prompts
+### Running backend
+```
+npm start
+```
 
-### Compiles and hot-reloads for development
+### Running frontend
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
