@@ -38,6 +38,7 @@ There is a user entry with username: username and password: password. This can b
 During the end of our project we ran into troubles connecting the backend commands with the frontend components.
 The code and files are still included in the project to show proof of work on it but we could not get it to be fully functional with our webpage.
 We have a working database that can store the information for login information, but were just unable to get the functions to carry this information to our frontend.
+The two form compnents for login and registration are still included, however these will not work as the login view that has both of these is not enabled in the router.
 We hope you can see the proof of work in our backend and auth.js files!
 
 
