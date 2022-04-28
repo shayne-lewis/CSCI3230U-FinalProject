@@ -28,7 +28,9 @@ https://docs.google.com/presentation/d/1pvSF0IXR_g6r96Zy_5RMUGZRjZLmLNL2ujuhpyx9
 
 ## Description of backend
 The backend of this project is designed as a node.js server that runs on the local machine, seperate from running the vue client.
-MongoDB is used to store the data of the users and the scores of each user. The design of the backend was inspired by the following tutorial: https://youtu.be/2jqok-WgelI. This tutorial provided the structure of the backend and the structure of the database that was easy to understand and use. The database is held on a cluster in MongoDB Atlas, and access should be available everywhere. 
+MongoDB is used to store the data of the users and the scores of each user. The design of the backend was inspired by the following tutorial: https://youtu.be/2jqok-WgelI. This tutorial provided the an easy-to-use structure to build with, and allowed for effortless connection to MongoDB. 
+The database is held on a cluster in MongoDB Atlas, and access should be available everywhere. 
+The portion for user authentication is fully available, and api calls made from postman were successful. The scores portions is partially functional; new users can be added to the database, but the scores are not being updated or cannot be checked as a 400 error occurs upon request.
 
 ## Issues
 During the end of our project we ran into troubles connecting the backend commands with the frontend components.
@@ -41,7 +43,7 @@ We hope you can see the proof of work in our backend and auth.js files!
 ```
 npm install
 ```
-Running frontend and backend is done in two seperate shell prompts
+Running frontend and backend is done in two seperate shell prompts, make sure to npm install the frontend and backend before running them.
 ### Running backend
 ```
 npm start

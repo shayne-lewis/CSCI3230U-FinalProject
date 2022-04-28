@@ -8,7 +8,7 @@ let scoreSchema = new mongoose.Schema({
         minlength: 1,
         maxlength: 100
     },
-    wins: {
+    score: {
         type: String,
         required: true,
         minlength: 0
@@ -16,4 +16,4 @@ let scoreSchema = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('Score', userSchema);
+module.exports = mongoose.model('HighScores', scoreSchema);
