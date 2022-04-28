@@ -9,7 +9,7 @@ let scoreSchema = new mongoose.Schema({
         maxlength: 100
     },
     score: {
-        type: String,
+        type: Number,
         required: true,
         minlength: 0
     }

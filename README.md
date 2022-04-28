@@ -31,7 +31,9 @@ The backend of this project is designed as a node.js server that runs on the loc
 MongoDB is used to store the data of the users and the scores of each user. The design of the backend was inspired by the following tutorial: https://youtu.be/2jqok-WgelI. This tutorial provided the an easy-to-use structure to build with, and allowed for effortless connection to MongoDB. 
 The database is held on a cluster in MongoDB Atlas, and access should be available everywhere. 
 The portion for user authentication is fully available, and api calls made from postman were successful. The scores portions is partially functional; new users can be added to the database, but the scores are not being updated or cannot be checked as a 400 error occurs upon request.
+If access to the database is needed to look at data, please contact David Mongeon as he is the admin of the database.
 
+There is a user entry with username: username and password: password. This can be used in conjunction with Postman to make calls to the api.
 ## Issues
 During the end of our project we ran into troubles connecting the backend commands with the frontend components.
 The code and files are still included in the project to show proof of work on it but we could not get it to be fully functional with our webpage.

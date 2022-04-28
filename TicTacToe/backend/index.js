@@ -5,9 +5,9 @@ const dotenv = require('dotenv');
 const routeAuth = require('./routes/auth');
 const routeTrack = require('./routes/track');
 
-
 dotenv.config();
 
+// Connect mongoose to the database
 mongoose.connect(
     process.env.DB_CONNECTION,
     {
@@ -24,6 +24,7 @@ mongoose.connect(
 
 app.use(express.json());
 
+// Assign routes to the app
 app.use('/api/user', routeAuth).use('/api/highscore', routeTrack);
 
 app.listen(3000, () => {

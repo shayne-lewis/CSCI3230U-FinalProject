@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Score = require('../model/HighScores');
 
+// Add new user to scores 
 router.post('/newUser', async (req, res) => {
     const score = new Score({
         name: req.body.name,
@@ -14,20 +15,35 @@ router.post('/newUser', async (req, res) => {
     }
 });
 
-router.post('/getHighScore', async (req, res) => {
+// Return the scores
+router.get('/', async (req, res) => {
     try{
-        const highScore = await HighScore.find().sort({score: -1}).limit(10);
-        res.send(highScore);
-    } catch(err){
+        const scores = await Score.find();
+        res.send(scores);
+    }
+    catch(err){
         res.status(400).send(err);
     }
 });
 
-router.post('/addOneToUserScore', async (req, res) => {
+// Get the score of a specific name
+router.get('/:name', async (req, res) => {
     try{
-        const user = await User.findOneAndUpdate({name: req.body.name}, {$inc: {score: 1}}, {new: true});
-        res.send(user);
-    } catch(err){
+        const score = await Score.find({name: req.params.name});
+        res.send(score);
+    }
+    catch(err){
+        res.status(400).send(err);
+    }
+});
+
+// Update the score of a name
+router.patch('/:name', async (req, res) => {
+    try{
+        const score = await Score.findOneAndUpdate({name: req.params.name}, {$set: {score: req.body.score}}, {new: true});
+        res.send(score);
+    }   
+    catch(err){
         res.status(400).send(err);
     }
 });
